@@ -1,19 +1,25 @@
-function convertToBinary(x) {
-    let bin = 0;
-    let rem, i = 1, step = 1;
-    while (x != 0) {
-        rem = x % 2;
-        console.log(
-            `Step ${step++}: ${x}/2, Remainder = ${rem}, Quotient = ${parseInt(x/2)}`
-        );
-        x = parseInt(x / 2);
-        bin = bin + rem * i;
-        i = i * 10;
-    }
-    console.log(`Binary: ${bin}`);
+function threeSum(arr, target) {
+// write your code here
+	arr.sort((a,b)=>a-b);
+	let closetSum = Infinity;
+	for(let i=0;i<arr.length-2;i++){
+		let j =i+1;
+		let k= arr.length-1;
+		while(j<k){
+			const sum =arr[i]+arr[j]+arr[k];
+			if(Math.abs(sum-target)< Math.abs(closetSum-target)){
+				closetSum=sum;
+			}
+			if(sum<target){
+				j++;
+			}
+			else{
+				k--;
+			}
+		}
+	}
+	
+  return closetSum;
 }
 
-// take input
-// let number = prompt('Enter a decimal number: ');
-
-convertToBinary(number);
+module.exports = threeSum;
